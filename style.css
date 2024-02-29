@@ -89,7 +89,10 @@ body {
 }
 
 .confirm button {
-    padding: 5px;
+    height: calc(var(--dimension)/2);
+    width: calc(var(--dimension)/2);
+
+    font-size: calc(var(--dimension)/4);
 }
 
 .result {

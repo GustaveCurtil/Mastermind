@@ -5,48 +5,78 @@ let selectedColor;
 
 let rows = document.querySelectorAll(".row");
 rows = [...rows].reverse();
+rows.forEach(row => {
+    row.played = false;
+})
+
 let placeholders;
 
-startGame()
+game();
 
-function startGame() {
-    colorSelection();
-    confirmFilledRow();
-    placeholders = checkActiveRow(0).querySelectorAll('.attempt .placeholder');
-    changeColorsOnActiveRow();
+function game() {
+    round(); 
+}
+
+function round() {
+    selectColor();
+    drawConfirmationButton();
+    placePawn();
 
     let button = document.querySelector('button')
     button.addEventListener("click", ()=> {
         if (checkForFullRow()) {
-            console.log(checkForFullRow())
+            let tips = [];
+
+            for (let i = 0; i < code.length; i++) {
+                if (checkForFullRow()[i] === code[i]) {
+                    tips.push("black");
+                } else {
+                    for (let j = 0; j < code.length; j++) {
+                        if (checkForFullRow()[j] === code[i]) {
+                            tips.push("white")
+                            j = code.length;
+                        }
+                    }
+                } 
+            }
+
+            tips.sort((a, b) => (a === 'black') ? -1 : 1);
+
+            console.log(tips)
+            checkActiveRow(0).played = true;
+            return round();
         }
     })
 }
 
-function colorSelection() {
-    colors.forEach(pawn => {
-        pawn.addEventListener('click', ()=> {
-            changeSelectedColor(pawn);
-            selectedColor = pawn.id;
+function selectColor() {
+    colors.forEach(color => {
+        color.addEventListener('click', ()=> {
+            changeSelectedColor(color);
+            selectedColor = color.id;
         })
     });
 }
 
-function changeSelectedColor(colorPawn) {
-    colors.forEach(pawn => {
-        pawn.classList.remove("selected");
-        if (pawn === colorPawn) {
-            pawn.classList.add("selected");
+function changeSelectedColor(selectedColor) {
+    colors.forEach(color => {
+        color.classList.remove("selected");
+        if (color === selectedColor) {
+            color.classList.add("selected");
         }
     });
 }
 
-function confirmFilledRow() {
+function drawConfirmationButton() {
     rows.forEach(row => {
-        row.played = false;
+        let confirm = row.querySelector('.confirm');
+        let number = row.querySelector('.rownumber');
+        confirm.innerHTML = null;
         if (checkActiveRow(0) === row) {
-            let confirm = row.querySelector('.confirm');
-            confirm.innerHTML = "<button>ok</button>";
+            number.style.fontWeight = 'bold';
+            number.style.color = 'black';
+
+            confirm.innerHTML = "<button>✓</button>";
         }
     });
 }
@@ -55,23 +85,32 @@ function checkActiveRow(i) {
     if (rows[i].played === false) {
         return rows[i];
     } else {
-        checkActiveRow(i+1);
+        return checkActiveRow(i+1);
     }
 }
 
-function changeColorsOnActiveRow() {
+function placePawn() {
+    if (placeholders) {
+        placeholders.forEach(placeholder => {
+            placeholder.removeEventListener("click", colorPawn);            
+        });
+    }
+
+    placeholders = checkActiveRow(0).querySelectorAll('.attempt .placeholder');
+    console.log(placeholders)
+    
     placeholders.forEach(placeholder => {
-        placeholder.addEventListener("click", ()=> {
-            if (selectedColor) {
-                placeholder.className = 'pawn ' + selectedColor;
-                placeholder.color = selectedColor;
-            }
-        })   
+        placeholder.addEventListener("click", colorPawn)   
          
     });
 }
 
-
+function colorPawn(e) {
+    if (selectedColor) {
+        e.target.className = 'pawn ' + selectedColor;
+        e.target.color = selectedColor;
+    }
+}
 
 
 function checkForFullRow() {
