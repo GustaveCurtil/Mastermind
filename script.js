@@ -39,10 +39,17 @@ function round() {
                     }
                 } 
             }
-
+            console.log(tips)
             tips.sort((a, b) => (a === 'black') ? -1 : 1);
 
             console.log(tips)
+
+            drawTips(tips);
+
+            if (tips[3] === 'black') {
+                return console.log("you won!");
+            }
+
             checkActiveRow(0).played = true;
             return round();
         }
@@ -125,5 +132,25 @@ function checkForFullRow() {
         return code
     } else {
         return false
+    }
+}
+
+function drawTips(tips) {
+    let tipPlaceholders = checkActiveRow(0).querySelectorAll('.result .placeholder');
+    for (let i = 0; i < tipPlaceholders.length; i++) {
+        const placeholder = tipPlaceholders[i];
+        if (tips[i] === 'black') {
+            placeholder.style.width = 'calc(var(--dimension) / 6)';
+            placeholder.style.height = 'calc(var(--dimension) / 6)';
+            placeholder.style.margin = 'calc(var(--dimension) / 6)';
+            placeholder.style.backgroundColor = "var(--black)";
+            placeholder.style.border = "1px solid var(--gravings)"
+        } else if(tips[i] === "white") {
+            placeholder.style.width = 'calc(var(--dimension) / 6)';
+            placeholder.style.height = 'calc(var(--dimension) / 6)';
+            placeholder.style.margin = 'calc(var(--dimension) / 6)';
+            placeholder.style.backgroundColor = "var(--white)";
+            placeholder.style.border = "1px solid var(--gravings)"
+        }
     }
 }
