@@ -50,14 +50,20 @@ p {
     height: var(--dimension);
 
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 
     border: var(--gravings) solid 1px;
 }
 
-.secret-code span {
-    font-size: large;
+.secret-code .answer {
+    display: none;
+    height: calc(7 * var(--dimension) / 12);
+    width: calc(7 * var(--dimension) / 12);
+
+    border: 1px solid var(--gravings);
+
+    border-radius: 50%;
 }
 
 .playground {

@@ -52,6 +52,7 @@ function round() {
             drawTips(tips);
 
             if (tips[3] === 'black') {
+                showAnswer();
                 return console.log("you won!");
             }
 
@@ -157,5 +158,14 @@ function drawTips(tips) {
             placeholder.style.backgroundColor = "var(--white)";
             placeholder.style.border = "1px solid var(--gravings)"
         }
+    }
+}
+
+function showAnswer(){
+    let answer = document.querySelectorAll('.answer');
+    for (let i = 0; i < answer.length; i++) {
+        answer[i].style.display = 'initial';
+        answer[i].style.backgroundColor = 'var(--' + code[i] + ')';
+        
     }
 }
