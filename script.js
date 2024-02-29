@@ -25,20 +25,25 @@ function round() {
     let button = document.querySelector('button')
     button.addEventListener("click", ()=> {
         if (checkForFullRow()) {
+            let givenAnswer = checkForFullRow();
             let tips = [];
 
             for (let i = 0; i < code.length; i++) {
-                if (checkForFullRow()[i] === code[i]) {
+                if (code[i] === givenAnswer[i]) {
                     tips.push("black");
+                    givenAnswer[i] = "check";
                 } else {
                     for (let j = 0; j < code.length; j++) {
-                        if (checkForFullRow()[j] === code[i]) {
+                        if (code[i] === givenAnswer[j]) {
                             tips.push("white")
+                            givenAnswer[j] = "check";
                             j = code.length;
                         }
                     }
                 } 
             }
+
+            console.log(givenAnswer);
             console.log(tips)
             tips.sort((a, b) => (a === 'black') ? -1 : 1);
 

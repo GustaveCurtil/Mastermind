@@ -6,7 +6,7 @@
 
 :root {
     --dimension: calc(100svh / 15);
-    --hole: rgb(84, 84, 84);
+    --hole: rgb(95, 95, 95);
     --gravings: rgb(166, 166, 166);
     --transparancy: 0.5;
 
@@ -104,10 +104,10 @@ body {
 }
 
 .result .placeholder {
-    height: calc(var(--dimension) / 10);
-    width: calc(var(--dimension) / 10);
+    height: calc(var(--dimension) / 12);
+    width: calc(var(--dimension) / 12);
 
-    margin: calc(var(--dimension) / 5);
+    margin: calc(var(--dimension) / 4.8);
 
     border-radius: 50%;
 
