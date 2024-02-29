@@ -42,18 +42,33 @@ p {
 
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
 }
 
-.secret-code {
-    width: calc(4 * var(--dimension));
+.top {
+    display: flex;
+    align-items: center;
+}
+
+.playbutton {
     height: var(--dimension);
+    width: var(--dimension);
+}
+
+
+.secret-code {
+    width: calc(4 * var(--dimension) - 20px);
+    height: calc(var(--dimension) - 20px);
+
+    margin: 10px;
 
     display: flex;
     justify-content: space-around;
     align-items: center;
 
-    border: var(--gravings) solid 1px;
+    box-sizing: content-box;
+
+    box-shadow: rgb(85, 91, 255) 0px 0px 0px 2px, rgb(31, 193, 27) 0px 0px 0px 4px, rgb(255, 217, 19) 0px 0px 0px 6px, rgb(255, 156, 85) 0px 0px 0px 8px, rgb(255, 85, 85) 0px 0px 0px 10px;
+
 }
 
 .secret-code .answer {

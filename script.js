@@ -1,4 +1,13 @@
-let code = ['black', 'yellow', 'yellow', 'red'];
+let codes = [
+    ['black', 'yellow', 'yellow', 'red'],
+    ['blue', 'blue', 'white', 'red'], 
+    ['white', 'black', 'white', 'black'], 
+    ['green', 'yellow', 'red', 'yellow'], 
+    ['blue', 'black', 'blue', 'blue'], 
+    ['green', 'green', 'red', 'blue']
+]
+
+let code;
 
 let colors = document.querySelectorAll('.colorselection');
 let selectedColor;
@@ -10,20 +19,39 @@ rows.forEach(row => {
 })
 
 let placeholders;
+let play = document.querySelector('.playbutton')
+
 
 game();
 
 function game() {
-    round(); 
+    play.addEventListener('click', () => {
+        generateCode();
+        round(); 
+    })
+}
+
+function generateCode() {
+    if (codes.length === 0) {
+        console.log("All codes have been used.");
+        return null;
+    }
+
+    const index = Math.floor(Math.random() * codes.length);
+    code = codes[index];
+    codes.splice(index, 1); // Remove the selected code from the array
+    return code;
 }
 
 function round() {
+    console.log('check')
     selectColor();
     drawConfirmationButton();
     placePawn();
 
-    let button = document.querySelector('button')
+    let button = document.querySelector('.confirm button')
     button.addEventListener("click", ()=> {
+        console.log('yom'); 
         if (checkForFullRow()) {
             let givenAnswer = checkForFullRow();
             let tips = [];
@@ -53,9 +81,9 @@ function round() {
 
             if (tips[3] === 'black') {
                 showAnswer();
-                return console.log("you won!");
+                return game();
             }
-
+            console.log("yo")
             checkActiveRow(0).played = true;
             return round();
         }
