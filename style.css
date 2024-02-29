@@ -22,10 +22,15 @@ body {
     width: 100vw;
     height: 100svh;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 
     /* background-color:rgba(244, 165, 96, 0.661) ; */
+}
+
+p {
+    line-height: 150%;
+    color: var(--black);
 }
 
 .board {
@@ -197,3 +202,13 @@ body {
 
     border-radius: 50%;
 }
+
+@media screen and (max-width:600px) {
+    .rightpanel, .leftpanel {
+        display: none;
+    }    
+}
+
+.rightpanel, .leftpanel {
+    width: calc(5 * var(--dimension));
+}   
