@@ -86,9 +86,11 @@ function round() {
                 } else {
                     for (let j = 0; j < code.length; j++) {
                         if (code[i] === givenAnswer[j]) {
-                            tips.push("white")
-                            givenAnswer[j] = "check";
-                            j = code.length;
+                            if (code[j] !== givenAnswer[j]) {
+                                tips.push("white")
+                                givenAnswer[j] = "check";
+                                j = code.length;
+                            } 
                         }
                     }
                 } 
