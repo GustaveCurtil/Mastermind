@@ -41,6 +41,11 @@ function clearField() {
         row.played = false;
     })
 
+    let answer = document.querySelectorAll('.answer');
+    answer.forEach(pawn => {
+        pawn.style.display = "none";    
+    });
+
     let numbers = document.querySelectorAll('.rownumber');
     numbers.forEach(number => {
         number.style.fontWeight = 'initial';
@@ -183,7 +188,6 @@ function placePawn() {
     
     placeholders.forEach(placeholder => {
         placeholder.addEventListener("click", colorPawn)   
-         
     });
 }
 
