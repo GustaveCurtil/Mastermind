@@ -140,6 +140,17 @@ p {
     background-color: var(--hole);
 }
 
+.result .keg {
+    height: calc(var(--dimension) / 6);
+    width: calc(var(--dimension) / 6);
+
+    margin: calc(var(--dimension) / 6);
+
+    border: none;
+
+    border-radius: 50%;
+}
+
 .attempt {
     height: 100%;
     width: calc(4 * var(--dimension));

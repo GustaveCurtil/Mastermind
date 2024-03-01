@@ -22,13 +22,36 @@ let placeholders;
 let play = document.querySelector('.playbutton')
 
 
+generateCode();
+round(); 
+
 game();
 
 function game() {
     play.addEventListener('click', () => {
+        clearField();
         generateCode();
         round(); 
     })
+}
+
+function clearField() {
+    let numbers = document.querySelectorAll('.rownumber');
+    numbers.forEach(number => {
+        number.style.fontWeight = 'initial';
+        number.style.color = 'var(--gravings)';
+    });
+
+    placeholders = document.querySelectorAll('.attempt .pawn');
+    placeholders.forEach(placeholder => {
+        placeholder.className = "placeholder"
+    });
+
+    let tipPlaceholders = document.querySelectorAll('.result .keg');
+    tipPlaceholders.forEach(placeholder => {
+        placeholder.className = "placeholder"
+    });
+
 }
 
 function generateCode() {
@@ -81,6 +104,8 @@ function round() {
 
             if (tips[3] === 'black') {
                 showAnswer();
+                removeConfirmationButton();
+                checkForFullRow() = null;
                 return game();
             }
             console.log("yo")
@@ -119,6 +144,13 @@ function drawConfirmationButton() {
 
             confirm.innerHTML = "<button>✓</button>";
         }
+    });
+}
+
+function removeConfirmationButton() {
+        rows.forEach(row => {
+        let confirm = row.querySelector('.confirm');
+        confirm.innerHTML = null;
     });
 }
 
@@ -174,15 +206,11 @@ function drawTips(tips) {
     for (let i = 0; i < tipPlaceholders.length; i++) {
         const placeholder = tipPlaceholders[i];
         if (tips[i] === 'black') {
-            placeholder.style.width = 'calc(var(--dimension) / 6)';
-            placeholder.style.height = 'calc(var(--dimension) / 6)';
-            placeholder.style.margin = 'calc(var(--dimension) / 6)';
+            placeholder.className = "keg";
             placeholder.style.backgroundColor = "var(--black)";
             placeholder.style.border = "1px solid var(--gravings)"
         } else if(tips[i] === "white") {
-            placeholder.style.width = 'calc(var(--dimension) / 6)';
-            placeholder.style.height = 'calc(var(--dimension) / 6)';
-            placeholder.style.margin = 'calc(var(--dimension) / 6)';
+            placeholder.className = "keg"
             placeholder.style.backgroundColor = "var(--white)";
             placeholder.style.border = "1px solid var(--gravings)"
         }
