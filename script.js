@@ -4,7 +4,8 @@ let codes = [
     ['white', 'black', 'white', 'black'], 
     ['green', 'yellow', 'red', 'yellow'], 
     ['blue', 'black', 'blue', 'blue'], 
-    ['green', 'green', 'red', 'blue']
+    ['green', 'green', 'red', 'blue'], 
+    ['red', 'red', 'red', 'red']
 ]
 
 let code;
@@ -36,6 +37,10 @@ function game() {
 }
 
 function clearField() {
+    rows.forEach(row => {
+        row.played = false;
+    })
+
     let numbers = document.querySelectorAll('.rownumber');
     numbers.forEach(number => {
         number.style.fontWeight = 'initial';
@@ -44,12 +49,14 @@ function clearField() {
 
     placeholders = document.querySelectorAll('.attempt .pawn');
     placeholders.forEach(placeholder => {
-        placeholder.className = "placeholder"
+        placeholder.className = "placeholder";
     });
 
     let tipPlaceholders = document.querySelectorAll('.result .keg');
     tipPlaceholders.forEach(placeholder => {
-        placeholder.className = "placeholder"
+        placeholder.className = "placeholder";
+        placeholder.style.backgroundColor = "var(--hole)";
+        placeholder.style.border = 'none';
     });
 
 }
