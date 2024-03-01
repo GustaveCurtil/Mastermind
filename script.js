@@ -5,8 +5,17 @@ let codes = [
     ['green', 'yellow', 'red', 'yellow'], 
     ['blue', 'black', 'blue', 'blue'], 
     ['green', 'green', 'red', 'blue'], 
-    ['red', 'red', 'red', 'red']
+    ['red', 'red', 'red', 'red'], 
+    ['red', 'black', 'white', 'green'], 
+    ['green', 'green', 'green', 'white'], 
+    ['black', 'yellow', 'green', 'green'], 
+    ['blue', 'green', 'red', 'black'], 
+    ['yellow', 'black', 'red', 'yellow'], 
+    ['yellow', 'yellow', 'white', 'white'], 
+    ['blue', 'red', 'blue', 'white']
 ]
+
+let score = [];
 
 let code;
 
@@ -29,6 +38,7 @@ round();
 game();
 
 function game() {
+    // updateScore();
     play.addEventListener('click', () => {
         clearField();
         generateCode();
@@ -117,6 +127,17 @@ function round() {
             drawTips(tips);
 
             if (tips[3] === 'black') {
+
+                rows.forEach(row => {
+                    let confirm = row.querySelector('.confirm');
+                    let number = row.querySelector('.rownumber');
+                    confirm.innerHTML = null;
+                    if (checkActiveRow(0) === row) {
+                        console.log(number.textContent)
+                        score.push(number.textContent);
+                    }
+                });
+                console.log(score);
                 showAnswer();
                 removeConfirmationButton();
                 checkForFullRow() = null;
