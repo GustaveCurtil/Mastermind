@@ -52,6 +52,8 @@ p {
 .playbutton {
     height: var(--dimension);
     width: var(--dimension);
+
+    border: 1px solid var(--gravings);  
 }
 
 
@@ -119,6 +121,7 @@ p {
     width: calc(var(--dimension)/2);
 
     font-size: calc(var(--dimension)/4);
+    border: 1px solid var(--gravings);
 }
 
 .result {
@@ -136,6 +139,8 @@ p {
     margin: calc(var(--dimension) / 4.8);
 
     border-radius: 50%;
+
+    position: relative;
 
     background-color: var(--hole);
 }
@@ -238,7 +243,18 @@ p {
 @media screen and (max-width:600px) {
     .rightpanel, .leftpanel {
         display: none;
-    }    
+    }   
+    
+    .selected, .secret-code {
+        box-shadow: rgb(85, 91, 255) 0px 0px 0px 1px, rgb(31, 193, 27) 0px 0px 0px 2px, rgb(255, 217, 19) 0px 0px 0px 3px, rgb(255, 156, 85) 0px 0px 0px 4px, rgb(255, 85, 85) 0px 0px 0px 5px;
+    }
+
+    .secret-code {
+        width: calc(4 * var(--dimension) - 10px);
+        height: calc(var(--dimension) - 10px);
+    
+        margin: 5px;
+    }
 }
 
 .rightpanel, .leftpanel {
